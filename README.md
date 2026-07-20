@@ -1,6 +1,11 @@
 # xplane-lcd-instruments
 
 A physical flight instrument display driven by live data from X-Plane 11, showing altitude and vertical speed on a 16x2 LCD in real time.
+https://github.com/user-attachments/assets/ae702947-d8f2-4838-b333-a26c97f209ec
+![lcd](docs/lcd.jpg)
+![setup](docs/fullsetup.jpg)
+![wiring](docs/wiring.jpg)
+![resistor](docs/2kres.jpg)
 
 
 ## Overview
