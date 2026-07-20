@@ -32,6 +32,7 @@ arm-none-eabi-objcopy -O binary xp_lcd.elf xp_lcd.bin
 
 # Flashing
 STM32_Programmer_CLI.exe -c port=SWD -w xp_lcd.bin 0x08000000 -v -rst
+```
 
 Notes:
 
