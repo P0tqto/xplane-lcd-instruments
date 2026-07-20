@@ -45,7 +45,7 @@ try:
                         ser.flush()
                         print(f"Sent: {alt_str}") # print in terminal for debugging
                         
-                        time.sleep(0.01) # give sometime for the LCD to move cursor
+                        time.sleep(0.01) # give some time for the LCD to move cursor
 
                     # category 4: Mach, VVI, G-Load (for vertical speed aka VVI)
                     elif category_index == 4:
