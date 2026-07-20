@@ -1,0 +1,31 @@
+# --- STM32 / Makefile build artifacts ---
+firmware/build/
+firmware/**/*.o
+firmware/**/*.elf
+firmware/**/*.bin
+firmware/**/*.hex
+firmware/**/*.map
+firmware/**/*.list
+firmware/**/*.d
+
+# --- VS Code ---
+# c_cpp_properties.json is kept (just compiler/include config, nothing personal)
+# only ignore IntelliSense cache junk
+firmware/.vscode/ipch/
+*.code-workspace
+
+# --- Python ---
+__pycache__/
+*.pyc
+*.pyo
+.venv/
+venv/
+*.egg-info/
+
+# --- OS junk ---
+.DS_Store
+Thumbs.db
+
+# --- Editor swap/backup files ---
+*.swp
+*~
