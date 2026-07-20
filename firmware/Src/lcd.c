@@ -1,10 +1,5 @@
 #include "lcd.h"
 
-/* Connected D4-D7 on the LCD to PB3-PB6, which are D3, D5, D4, D10 respectively, in that sequence
-VO is connected to a 2K ohm resistor then GND, alongside VSS, K, RW.
-VDD is connected to 5V.
-A is connected to 3.3V. */
-
 static void LCD_SendNibble(uint8_t nibble);
 static void LCD_PulseEnable(void);
 extern void delay_ms(uint32_t ms);
@@ -15,13 +10,13 @@ void LCD_GPIO_Init(void)
     RCC->AHB1ENR |= (RCC_AHB1ENR_GPIOAEN | RCC_AHB1ENR_GPIOBEN);
 
     // set PA0-1 to general purpose output mode
-    GPIOA->MODER &= ~(GPIO_MODER_MODER0 | GPIO_MODER_MODER1);    
-    GPIOA->MODER |= (GPIO_MODER_MODER0_0 | GPIO_MODER_MODER1_0); 
+    GPIOA->MODER &= ~(GPIO_MODER_MODER0 | GPIO_MODER_MODER1);
+    GPIOA->MODER |= (GPIO_MODER_MODER0_0 | GPIO_MODER_MODER1_0);
 
     // set PB9-12 to general purpose output mode
-    GPIOB->MODER &= ~(GPIO_MODER_MODER3 | GPIO_MODER_MODER4 |     
-                      GPIO_MODER_MODER5 | GPIO_MODER_MODER6);    
-    GPIOB->MODER |= (GPIO_MODER_MODER3_0 | GPIO_MODER_MODER4_0 |  
+    GPIOB->MODER &= ~(GPIO_MODER_MODER3 | GPIO_MODER_MODER4 |
+                      GPIO_MODER_MODER5 | GPIO_MODER_MODER6);
+    GPIOB->MODER |= (GPIO_MODER_MODER3_0 | GPIO_MODER_MODER4_0 |
                      GPIO_MODER_MODER5_0 | GPIO_MODER_MODER6_0);
 
     // start pins at low state (0V)
@@ -30,7 +25,7 @@ void LCD_GPIO_Init(void)
 }
 
 // Tell LCD to read data
-void LCD_PulseEnable(void) 
+void LCD_PulseEnable(void)
 {
     GPIOA->ODR |= (1 << 1); // Set E (PA1) High
 
@@ -88,19 +83,19 @@ void LCD_Init(void)
     delay_ms(50);
 
     // enter command mode / instruction register (RS = 0 on datasheet)
-    GPIOA->ODR &= ~GPIO_ODR_OD0; 
+    GPIOA->ODR &= ~GPIO_ODR_OD0;
 
     // wake up sequence
     LCD_SendNibble(0x03);
     delay_ms(5); // wait > 4.1ms (datasheet)
 
     LCD_SendNibble(0x03);
-    delay_ms(1); // wait > 100us 
+    delay_ms(1); // wait > 100us
 
     LCD_SendNibble(0x03);
     delay_ms(1);
 
-    // officially lock the screen into 4-bit data mode 
+    // officially lock the screen into 4-bit data mode
     LCD_SendNibble(0x02);
     delay_ms(1);
 
