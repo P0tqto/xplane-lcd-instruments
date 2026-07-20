@@ -34,7 +34,7 @@ try:
     
                 idx = 5 # we start at byte 5 (skipping the 'DATA' header) 
                 while idx < len(data):
-                    category_index = struct.unpack("I", data[idx : idx + 4])[0] # [0] cus struct.unpack returs a tuple, we want an integer
+                    category_index = struct.unpack("I", data[idx : idx + 4])[0] # [0] cus struct.unpack returns a tuple, we want an integer
                     
                     # category 20: Latitude, longitude, & altitude (to grab altitude)
                     if category_index == 20:
@@ -45,7 +45,7 @@ try:
                         ser.flush()
                         print(f"Sent: {alt_str}") # print in terminal for debugging
                         
-                        time.sleep(0.01) # give sometime for the LCD to move cursor
+                        time.sleep(0.01) # give some time for the LCD to move cursor
 
                     # category 4: Mach, VVI, G-Load (for vertical speed aka VVI)
                     elif category_index == 4:
