@@ -6,8 +6,8 @@ FLASHER = STM32_Programmer_CLI
  
 # ---- Project files ----
 TARGET     = xplane-lcd-instruments
-INC_DIR    = Inc
-SRC_DIR    = Src
+INC_DIR    = inc
+SRC_DIR    = src
 STARTUP    = startup/startup_stm32f411xe.s
 LDSCRIPT   = STM32F411RETX_FLASH.ld
  

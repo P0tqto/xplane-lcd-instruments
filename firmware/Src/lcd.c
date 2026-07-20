@@ -116,6 +116,6 @@ void LCD_SendString(char *str)
     while (*str != '\0')
     {
         LCD_SendData((uint8_t)(*str)); // send the current character
-        str++;                         // sove the pointer to the next character
+        str++;                         // advance the pointer to the next character
     }
 }

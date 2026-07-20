@@ -7,7 +7,7 @@ Bare-metal firmware for the STM32F411 (Nucleo-F411RE)
 - `arm-none-eabi-gcc` toolchain (arm-none-eabi-gcc, -as, -ld, -objcopy)
 - `make`
 - [STM32CubeProgrammer](https://www.st.com/en/development-tools/stm32cubeprog.html) (for flashing)
-- CMSIS / device headers from STM32CubeF4 (already in `Inc/`, adjust path below if not)
+- CMSIS / device headers from STM32CubeF4 (already in `inc/`, adjust path below if not)
 
 ## 1. Building manually with arm-none-eabi-gcc
 
@@ -16,10 +16,10 @@ debug the build without the Makefile in the way.
 
 ```bash
 # Compile each source file to an object file
-arm-none-eabi-gcc -mcpu=cortex-m4 -mthumb -mfpu=fpv4-sp-d16 -mfloat-abi=hard -DSTM32F411xE -I"Inc" -c "Src/main.c" -o main.o
-arm-none-eabi-gcc -mcpu=cortex-m4 -mthumb -mfpu=fpv4-sp-d16 -mfloat-abi=hard -DSTM32F411xE -I"Inc" -c "Src/lcd.c" -o lcd.o
-arm-none-eabi-gcc -mcpu=cortex-m4 -mthumb -mfpu=fpv4-sp-d16 -mfloat-abi=hard -DSTM32F411xE -I"Inc" -c "Src/uart.c" -o uart.o
-arm-none-eabi-gcc -mcpu=cortex-m4 -mthumb -mfpu=fpv4-sp-d16 -mfloat-abi=hard -DSTM32F411xE -I"Inc" -c "Inc/system_stm32f4xx.c" -o system_stm32f4xx.o
+arm-none-eabi-gcc -mcpu=cortex-m4 -mthumb -mfpu=fpv4-sp-d16 -mfloat-abi=hard -DSTM32F411xE -I"inc" -c "src/main.c" -o main.o
+arm-none-eabi-gcc -mcpu=cortex-m4 -mthumb -mfpu=fpv4-sp-d16 -mfloat-abi=hard -DSTM32F411xE -I"inc" -c "src/lcd.c" -o lcd.o
+arm-none-eabi-gcc -mcpu=cortex-m4 -mthumb -mfpu=fpv4-sp-d16 -mfloat-abi=hard -DSTM32F411xE -I"inc" -c "src/uart.c" -o uart.o
+arm-none-eabi-gcc -mcpu=cortex-m4 -mthumb -mfpu=fpv4-sp-d16 -mfloat-abi=hard -DSTM32F411xE -I"inc" -c "inc/system_stm32f4xx.c" -o system_stm32f4xx.o
 
 # Assemble the startup file
 arm-none-eabi-gcc -mcpu=cortex-m4 -mthumb -mfpu=fpv4-sp-d16 -mfloat-abi=hard -c startup/startup_stm32f411xe.s -o startup_stm32f411xe.o
