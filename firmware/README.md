@@ -58,7 +58,7 @@ make flash
 If `make flash` isn't wired up yet, flash manually:
 
 ```bash
-STM32_Programmer_CLI.exe -c port=SWD -w xp_lcd.bin 0x08000000 -v -rst
+STM32_Programmer_CLI.exe -c port=SWD -w xplane-lcd-instruments.bin 0x08000000 -v -rst
 ```
 
 - `-c port=SWD` connects over the ST-Link's SWD interface (built into the Nucleo board)
