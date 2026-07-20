@@ -2,6 +2,17 @@
 
 A physical flight instrument display driven by live data from X-Plane 11, showing altitude and vertical speed on a 16x2 LCD in real time.
 
+https://github.com/user-attachments/assets/ae702947-d8f2-4838-b333-a26c97f209ec
+
+<table>
+  <tr>
+  <td><img src="docs/lcd.jpg" width="400"></td>
+  <td><img src="docs/fullsetup.jpg" width="400"></td>
+  <td><img src="docs/wiring.jpg" width="400"></td>
+  <td><img src="docs/2kres.jpg" width="400"></td>
+  </tr>
+</table>
+
 
 ## Overview
 
