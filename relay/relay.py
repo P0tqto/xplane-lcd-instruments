@@ -34,7 +34,7 @@ try:
     
                 idx = 5 # we start at byte 5 (skipping the 'DATA' header) 
                 while idx < len(data):
-                    category_index = struct.unpack("I", data[idx : idx + 4])[0] # [0] cus struct.unpack returs a tuple, we want an integer
+                    category_index = struct.unpack("I", data[idx : idx + 4])[0] # [0] cus struct.unpack returns a tuple, we want an integer
                     
                     # category 20: Latitude, longitude, & altitude (to grab altitude)
                     if category_index == 20:
