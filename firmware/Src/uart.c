@@ -26,10 +26,3 @@ char UART2_Read(void) {
     while (!(USART2->SR & (1 << 5)));
     return (char)(USART2->DR & 0xFF);
 }
-
-void UART2_ReadPacket(char* buffer, int length) {
-    for (int i = 0; i < length; i++) {
-        buffer[i] = UART2_Read();
-    }
-    buffer[length] = '\0'; // 
-}

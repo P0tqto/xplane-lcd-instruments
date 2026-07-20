@@ -5,6 +5,5 @@
 
 void UART2_Init(void);
 char UART2_Read(void);
-void UART2_ReadPacket(char* buffer, int length); 
 
 #endif
