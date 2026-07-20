@@ -11,14 +11,14 @@ Bare-metal firmware for the STM32F411 (Nucleo-F411RE)
 
 ## 1. Building manually with arm-none-eabi-gcc
 
-This is what `make` runs under the hood — useful if you want to understand or
+This is what `make` runs under the hood - useful if you want to understand or
 debug the build without the Makefile in the way.
 
 ```bash
 # Compile each source file to an object file
-arm-none-eabi-gcc -mcpu=cortex-m4 -mthumb -mfpu=fpv4-sp-d16 -mfloat-abi=hard -DSTM32F411xE -I"Inc" -c Src/main.c -o main.o
-arm-none-eabi-gcc -mcpu=cortex-m4 -mthumb -mfpu=fpv4-sp-d16 -mfloat-abi=hard -DSTM32F411xE -I"Inc" -c Src/lcd.c -o lcd.o
-arm-none-eabi-gcc -mcpu=cortex-m4 -mthumb -mfpu=fpv4-sp-d16 -mfloat-abi=hard -DSTM32F411xE -I"Inc" -c Src/uart.c -o uart.o
+arm-none-eabi-gcc -mcpu=cortex-m4 -mthumb -mfpu=fpv4-sp-d16 -mfloat-abi=hard -DSTM32F411xE -I"Inc" -c "Src/main.c" -o main.o
+arm-none-eabi-gcc -mcpu=cortex-m4 -mthumb -mfpu=fpv4-sp-d16 -mfloat-abi=hard -DSTM32F411xE -I"Inc" -c "Src/lcd.c" -o lcd.o
+arm-none-eabi-gcc -mcpu=cortex-m4 -mthumb -mfpu=fpv4-sp-d16 -mfloat-abi=hard -DSTM32F411xE -I"Inc" -c "Src/uart.c" -o uart.o
 arm-none-eabi-gcc -mcpu=cortex-m4 -mthumb -mfpu=fpv4-sp-d16 -mfloat-abi=hard -DSTM32F411xE -I"Inc" -c "Inc/system_stm32f4xx.c" -o system_stm32f4xx.o
 
 # Assemble the startup file
@@ -35,8 +35,8 @@ STM32_Programmer_CLI.exe -c port=SWD -w xp_lcd.bin 0x08000000 -v -rst
 
 Notes:
 
-- -specs=nosys.specs is required because there's no OS underneath — without it you'll hit unresolved _exit/_sbrk/etc. symbols at link time.
-- This project uses -mfloat-abi=hard -mfpu=fpv4-sp-d16 to take advantage of the F411's hardware FPU. If you're porting this to a chip without an FPU, switch to -mfloat-abi=soft (or softfp) and drop the -mfpu flag - but note all object files linked together must use the same float ABI, or you'll get subtle bugs/link errors.
+- `-specs=nosys.specs` is required because there's no OS underneath — without it you'll hit unresolved `_exit`/`_sbrk`/etc. symbols at link time.
+- This project uses `-mfloat-abi=hard -mfpu=fpv4-sp-d16` to take advantage of the F411's hardware FPU. If you're porting this to a chip without an FPU, switch to `-mfloat-abi=soft` (or `softfp`) and drop the `-mfpu` flag — but note all object files linked together must use the same float ABI, or you'll get subtle bugs/link errors.
 
 
 ## 2. Building with make
