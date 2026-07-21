@@ -85,7 +85,7 @@ Lots of problem and roadblocks as this is my first complete project on the micro
 - The Nucleo's Arduino-header pin labels **don't** map directly to the actual STM32 pins which costed me some wiring confusion early on (tho this was entirely my fault for not reading the datasheet carefully)
 - Writing the LCD driver from scratch (rather than using a library) meant actually understanding the HD44780 4-bit init sequence, reading the datasheet to know exactly what to send to the LCD, navigating the challenge to send data in 4-bit instead of 8-bit, etc...
 - Ghost character on the LCD the first time i sent the altitude, vertical speed template. Solved it by clearing the screen before sending the display template.
-- Initially, vertical speed was writing onto altitude's line. I assumed it was a Python/data issue and spent a while debugging the relay before realizing it was actually an HD44780 timing constraint. The cursor needed some time to move to the second line before the next write. This made me realized that there were hardware limitations to consider as well, not just pure code. 
+- Initially, vertical speed was writing onto altitude's line. It was caused by the way data was sent originally (character by character). This is fixed with a circular buffer.
 
 ## Why
 
