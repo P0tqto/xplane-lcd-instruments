@@ -45,8 +45,6 @@ try:
                         ser.flush()
                         print(f"Sent: {alt_str}") # print in terminal for debugging
                         
-                        time.sleep(0.01) # give some time for the LCD to move cursor
-
                     # category 4: Mach, VVI, G-Load (for vertical speed aka VVI)
                     elif category_index == 4:
                         v_speed = struct.unpack("f", data[idx + 12 : idx + 16])[0]
@@ -55,8 +53,6 @@ try:
                         ser.write(vs_str.encode('ascii'))
                         ser.flush()
                         print(f"Sent: {vs_str}")
-                        
-                        time.sleep(0.01)
                     
                     idx += 36  # move to the next data group in the packet because each instrument category like 4, 20 is 36 byte
         except socket.timeout:
