@@ -13,15 +13,15 @@ void LCD_GPIO_Init(void)
     GPIOA->MODER &= ~(GPIO_MODER_MODER0 | GPIO_MODER_MODER1);
     GPIOA->MODER |= (GPIO_MODER_MODER0_0 | GPIO_MODER_MODER1_0);
 
-    // set PB9-12 to general purpose output mode
+    // set PB3-6 to general purpose output mode
     GPIOB->MODER &= ~(GPIO_MODER_MODER3 | GPIO_MODER_MODER4 |
                       GPIO_MODER_MODER5 | GPIO_MODER_MODER6);
     GPIOB->MODER |= (GPIO_MODER_MODER3_0 | GPIO_MODER_MODER4_0 |
                      GPIO_MODER_MODER5_0 | GPIO_MODER_MODER6_0);
 
     // start pins at low state (0V)
-    GPIOA->ODR &= ~((1 << 0) | (1 << 1));
-    GPIOB->ODR &= ~((1 << 9) | (1 << 10) | (1 << 11) | (1 << 12));
+    GPIOA->BSRR = (GPIO_BSRR_BR0 | GPIO_BSRR_BR1); 
+    GPIOB->BSRR = (GPIO_BSRR_BR3 | GPIO_BSRR_BR4 | GPIO_BSRR_BR5 | GPIO_BSRR_BR6);
 }
 
 // Tell LCD to read data
@@ -54,7 +54,7 @@ void LCD_SendNibble(uint8_t nibble)
 
 void LCD_SendCommand(uint8_t cmd)
 {
-    GPIOA->ODR &= ~GPIO_ODR_OD0; // RS = 0 (Instruction Register Mode)
+    GPIOA->BSRR = GPIO_BSRR_BR0; // RS = 0 (Instruction Register Mode)
 
     // send upper 4 bits
     LCD_SendNibble(cmd >> 4);
@@ -65,7 +65,7 @@ void LCD_SendCommand(uint8_t cmd)
 
 void LCD_SendData(uint8_t data)
 {
-    GPIOA->ODR |= GPIO_ODR_OD0; // RS = 1 (Data Register Mode)
+    GPIOA->BSRR = GPIO_BSRR_BS0; // RS = 1 (Data Register Mode)
 
     // send upper 4 bits
     LCD_SendNibble(data >> 4);
@@ -83,7 +83,7 @@ void LCD_Init(void)
     delay_ms(50);
 
     // enter command mode / instruction register (RS = 0 on datasheet)
-    GPIOA->ODR &= ~GPIO_ODR_OD0;
+    GPIOA->BSRR = GPIO_BSRR_BS0;
 
     // wake up sequence
     LCD_SendNibble(0x03);
