@@ -23,6 +23,6 @@ void UART2_Init(void) {
 
 
 char UART2_Read(void) {
-    while (!(USART2->SR & (1 << 5)));
+    while (!(USART2->SR & (1 << 5))); // Read data register not empty
     return (char)(USART2->DR & 0xFF);
 }
