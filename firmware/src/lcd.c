@@ -27,14 +27,14 @@ void LCD_GPIO_Init(void)
 // Tell LCD to read data
 void LCD_PulseEnable(void)
 {
-    GPIOA->ODR |= (1 << 1); // Set E (PA1) High
+    GPIOA->BSRR = GPIO_BSRR_BS1; // Set E (PA1) High
 
     // The HD44780 chip needs the pulse to stay high for at least 450 nanoseconds.
     // At 84MHz or 100MHz, a tiny loop or a few NOPs is plenty of time.
     for (volatile int i = 0; i < 50; i++)
         ;
 
-    GPIOA->ODR &= ~(1 << 1); // Set E (PA1) Low (Falling Edge triggers read)
+    GPIOA->BSRR = GPIO_BSRR_BR1; // Set E (PA1) Low (Falling Edge triggers read)
 
     // Wait for the command to be registered inside the screen
     for (volatile int i = 0; i < 1000; i++)
