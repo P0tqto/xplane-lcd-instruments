@@ -12,7 +12,7 @@ void UART2_Init(void) {
 
     // map PA2 and PA3 to AF7 (USART2)
     GPIOA->AFR[0] &= ~(GPIO_AFRL_AFRL2 | GPIO_AFRL_AFRL3);
-    GPIOA->AFR[0] |= (7U << GPIO_AFRL_AFSEL2_Pos | (7U << GPIO_AFRL_AFSEL3_Pos)); // 2, 3 times 4 cus each pin gets 4 bit in AFR register 
+    GPIOA->AFR[0] |= (7U << GPIO_AFRL_AFSEL2_Pos | (7U << GPIO_AFRL_AFSEL3_Pos));
 
     // set baud rate
     USART2->BRR = 0x8B;
