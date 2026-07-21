@@ -44,10 +44,10 @@ void LCD_PulseEnable(void)
 void LCD_SendNibble(uint8_t nibble)
 {
     // clear only bits 3 to 6 in Port B without wiping other pins
-    GPIOB->ODR &= ~(0xF << 3);
+    GPIOB->ODR &= ~(0xF << LCD_D4_PIN);
 
     // take the bottom 4 bits of 'nibble', shift them up to bit 3, and write
-    GPIOB->ODR |= ((nibble & 0x0F) << 3);
+    GPIOB->ODR |= ((nibble & 0x0F) << LCD_D4_PIN);
 
     LCD_PulseEnable();
 }

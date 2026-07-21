@@ -1,5 +1,6 @@
 #ifndef LCD_H
 #define LCD_H
+#define LCD_D4_PIN 3
 
 #include "stm32f4xx.h"
 
